@@ -10,6 +10,7 @@ import fs from 'fs';
 import outputFileSync from 'output-file-sync';
 import readDir from "fs-readdir-recursive";
 import moment from 'moment';
+import pkg from '../package.json';
 
 const DEBUG = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
@@ -100,3 +101,9 @@ if (DEBUG) {
     });
   });
 }
+
+delete pkg.devDependencies;
+delete pkg.scripts;
+fs.writeFileSync(path.join(outputDir, 'package.json'), JSON.stringify(
+  pkg, null, '  '
+));
