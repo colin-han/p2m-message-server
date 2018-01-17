@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "babel-plugin-transform-define": "^1.2.0",
+    "babel-plugin-transform-node-env-inline": "^0.2.0",
     "babel-preset-node": "^5.1.1",
     "babel-preset-stage-3": "^6.22.0",
     "bluebird": "^3.5.0",
@@ -44,6 +45,7 @@
   "scripts": {
     "validateConfig": "node tools/validateConfig.js",
     "build": "./node_modules/.bin/babel-node tools/build.js",
+    "build:prod": "NODE_ENV=production ./node_modules/.bin/babel-node tools/build.js",
     "server": "node build/app.js",
     "start": "./node_modules/.bin/nodemon --watch build --watch config build/app.js",
     "migration": "node ./node_modules/.bin/p2migration up -m src/db/migrations -s src/db/seeders",

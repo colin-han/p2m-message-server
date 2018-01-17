@@ -1,4 +1,5 @@
 {
   "presets": ["node", "stage-3"],
+  "plugins": ["transform-node-env-inline"],
   "sourceMaps": true
 }
