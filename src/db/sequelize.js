@@ -11,7 +11,7 @@ import Sequelize from 'sequelize';
 import config from 'config';
 import _ from 'lodash';
 
-export default new Sequelize(_.assign({}, config.database, {
+export default new Sequelize(_.assign({}, config['p2m-message-server'].database, {
   define: {
     freezeTableName: true,
   }

@@ -29,7 +29,7 @@ import {models} from './db'
 
 let app = express();
 
-app.use(morgan((config.tracer && config.tracer.morganFormat) || 'combined'));
+app.use(morgan((config['p2m-message-server'].tracer && config['p2m-message-server'].tracer.morganFormat) || 'combined'));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
@@ -38,11 +38,11 @@ app.use(bodyParser.json());
 
 app.use(api.path, api.router);
 
-let server = app.listen(config.server.port);
+let server = app.listen(config['p2m-message-server'].server.port);
 
-service.use(socketIoChannel({path: config.server.path, models: models}))
-    .use(jpushChannel(config.jpush))
+service.use(socketIoChannel({path: config['p2m-message-server'].server.path, models: models}))
+    .use(jpushChannel(config['p2m-message-server'].jpush))
     .start(app, server);
 
-logger.log(`Service is starting at http://localhost:${config.server.port}`);
+logger.log(`Service is starting at http://localhost:${config['p2m-message-server'].server.port}`);
 

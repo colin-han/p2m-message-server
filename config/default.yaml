@@ -1,15 +1,16 @@
-server:
-  port: 80
-  path: /messages
-  interval: 60000
+p2m-message-server:
+  server:
+    port: 80
+    path: /messages
+    interval: 60000
 
-database:
-  username: root
-  password: xA123456
-  database: p2m_message_server
-  host: mysql
-  dialect: mysql
+  database:
+    username: root
+    password: xA123456
+    database: p2m_message_server
+    host: mysql
+    dialect: mysql
 
-jpush:
-  appKey:
-  masterSecret:
+  jpush:
+    appKey:
+    masterSecret:

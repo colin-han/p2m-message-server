@@ -180,7 +180,7 @@ router.post('/delivered', wrap(function*(req, res) {
     push.isDelivered = true;
     yield push.save();
   } else {
-    let error = `Message with pushId "${pushId}" is not found.`
+    let error = `Message with pushId "${pushId}" is not found.`;
     logger.error(error);
     res.json({success: false, error})
   }
@@ -204,7 +204,7 @@ router.post('/read', wrap(function*(req, res) {
     yield s.save();
     res.json({success: true});
   } else {
-    let error = `Message with sendId "${sendId}" is not found.`
+    let error = `Message with sendId "${sendId}" is not found.`;
     logger.error(error);
     res.json({success: false, error});
   }
@@ -227,11 +227,11 @@ router.post('/delay', wrap(function*(req, res) {
     });
     res.json({success: true});
   } else {
-    let error = `Message with sendId "${sendId}" is not found.`
+    let error = `Message with sendId "${sendId}" is not found.`;
     logger.error(error);
     res.json({success: false, error})
   }
 }));
 
 
-export default {path: config.server.path, router};
+export default {path: config['p2m-message-server'].server.path, router};

@@ -16,7 +16,7 @@ function* forceRun() {
 }
 function* intervalRun() {
   yield* loop();
-  setTimeout(co.wrap(intervalRun), config.server.interval)
+  setTimeout(co.wrap(intervalRun), config['p2m-message-server'].server.interval)
 }
 
 function* loop() {
