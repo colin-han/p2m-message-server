@@ -51,5 +51,8 @@
     "migration": "node ./node_modules/.bin/p2migration up -m src/db/migrations -s src/db/seeders",
     "migration:down": "node ./node_modules/.bin/p2migration down -m src/db/migrations -s src/db/seeders"
   },
-  "bin": "./app.js"
+  "bin": {
+    "p2message": "./app.js",
+    "p2message_init": "./init.sh"
+  }
 }
