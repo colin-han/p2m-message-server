@@ -2105,18 +2105,18 @@ p2m-common-logger@^1.0.0:
     lodash "^4.16.5"
     tracer "^0.8.7"
 
-p2m-message-channel-jpush@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/p2m-message-channel-jpush/-/p2m-message-channel-jpush-1.0.2.tgz#b4b6cc2568ccbbb9183e81b1a572212df7a13783"
+p2m-message-channel-jpush@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/p2m-message-channel-jpush/download/p2m-message-channel-jpush-2.0.0.tgz#ff10a78af7e32b099de75ab59ea86adcd8a47aac"
   dependencies:
     co "^4.6.0"
     config "^1.25.1"
     jpush-sdk "^3.3.7"
     p2m-common-logger "^1.0.0"
 
-p2m-message-channel-socket-io@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/p2m-message-channel-socket-io/-/p2m-message-channel-socket-io-1.0.2.tgz#469e1ab2147dc553f4849b247592f327cb840dc5"
+p2m-message-channel-socket-io@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/p2m-message-channel-socket-io/download/p2m-message-channel-socket-io-2.0.0.tgz#50f947c30ce04c6288e22d34ceef7de8e20d7cd2"
   dependencies:
     co "^4.6.0"
     config "^1.25.1"
