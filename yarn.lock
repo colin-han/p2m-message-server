@@ -2123,9 +2123,9 @@ p2m-message-channel-socket-io@^2.0.0:
     p2m-common-logger "^1.0.0"
     socket.io "^1.7.3"
 
-p2m-migration@^1.4.0:
-  version "1.4.0"
-  resolved "http://registry.npm.taobao.org/p2m-migration/download/p2m-migration-1.4.0.tgz#6ce249a18999346b1e39a44b6b497f1600fcb444"
+p2m-migration@^1.4.1:
+  version "1.4.1"
+  resolved "http://registry.npm.taobao.org/p2m-migration/download/p2m-migration-1.4.1.tgz#11604a392e0ec678fec9af27e819d8f499e62330"
   dependencies:
     co "^4.6.0"
     colors "^1.1.2"
