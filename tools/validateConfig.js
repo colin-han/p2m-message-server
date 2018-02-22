@@ -2,8 +2,10 @@
  * Created by colinhan on 28/03/2017.
  */
 
-const config = require('config');
-
+const config = require('config')['p2m-message-server'];
+if (!config) {
+  console.error(`Cannot find config session. Please ensure that config/default.yaml existed.`)
+}
 
 function validate(sessionName, configName, envName, type) {
   let session = config[sessionName];
