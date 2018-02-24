@@ -10,6 +10,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import path from 'path';
+import cors from 'cors';
 
 import commonLogger from 'p2m-common-logger';
 let logger = commonLogger('message-server');
@@ -35,6 +36,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+if (config['p2m-message-server'].cors) {
+  logger.log(`Server add CORS support. "${JSON.stringify(config['p2m-message-server'].cors)}"`);
+  app.use(cors(config['p2m-message-server'].cors));
+}
 
 app.use(api.path, api.router);
 
