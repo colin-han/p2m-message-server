@@ -37,9 +37,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-if (config['p2m-message-server'].cors) {
-  logger.log(`Server add CORS support. "${JSON.stringify(config['p2m-message-server'].cors)}"`);
-  app.use(cors(config['p2m-message-server'].cors));
+if (config['p2m-message-server'].server.cors) {
+  logger.log(`Server add CORS support. "${JSON.stringify(config['p2m-message-server'].server.cors)}"`);
+  app.use(cors(config['p2m-message-server'].server.cors));
 }
 
 app.use(api.path, api.router);

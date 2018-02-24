@@ -13,15 +13,6 @@ const logger = require('p2m-common-logger')('message-server');
 
 let router = express.Router();
 
-router.all('*', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
-  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
-
-
 router.get('/', wrap(function*(req, res) {
   let userId = req.query.userId;
   logger.log(`Get messages for user ${userId}`);
