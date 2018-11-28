@@ -242,10 +242,10 @@ router.post('/clearAll', wrap(function*(req, res) {
 }));
 
 router.post('/delete', wrap(function*(req, res) {
-  let {sendId} = req.body;
-  logger.log('User ask to make message "%j" as delete', {sendId});
+  let {messageId} = req.body;
+  logger.log('User ask to make message "%j" as delete', {messageId});
 
-  yield models.Message.update({isDeleted: true}, {where: { id: sendId }});
+  yield models.Message.update({isDeleted: true}, {where: { id: messageId }});
   res.json({success: true});
 }));
 
