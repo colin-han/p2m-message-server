@@ -45,6 +45,15 @@ router.get('/', wrap(function*(req, res) {
       offset: offset,
       order: [['id', 'DESC']]
     });
+  } else if (req.query.filter === 'isread') {
+    options.include[0].where.isRead = true;
+
+    result = yield models.Message.findAndCount({
+      ...options,
+      limit: pageSize,
+      offset: offset,
+      order: [['id', 'DESC']]
+    });
   } else {
     let rows = yield models.Message.findAll({
       ...options,
@@ -224,5 +233,20 @@ router.post('/delay', wrap(function*(req, res) {
   }
 }));
 
+router.post('/clearAll', wrap(function*(req, res) {
+  let userId = req.query.userId;
+  logger.log('User ask to clear all messages');
+
+  yield models.Message.update({isDeleted: true}, {where: { targetUserId: userId }});
+  res.json({success: true});
+}));
+
+router.post('/delete', wrap(function*(req, res) {
+  let {messageId} = req.body;
+  logger.log('User ask to make message "%j" as delete', {messageId});
+
+  yield models.Message.update({isDeleted: true}, {where: { id: messageId }});
+  res.json({success: true});
+}));
 
 export default {path: config['p2m-message-server'].server.path, router};
