@@ -39,7 +39,7 @@ router.get('/', wrap(function*(req, res) {
   if (req.query.filter === 'unread') {
     options.include[0].where.isRead = false;
 
-    result = yield models.Message.findAndCount({
+    result = yield models.Message.findAndCountAll({
       ...options,
       limit: pageSize,
       offset: offset,
@@ -48,7 +48,7 @@ router.get('/', wrap(function*(req, res) {
   } else if (req.query.filter === 'isread') {
     options.include[0].where.isRead = true;
 
-    result = yield models.Message.findAndCount({
+    result = yield models.Message.findAndCountAll({
       ...options,
       limit: pageSize,
       offset: offset,
@@ -175,7 +175,7 @@ router.post('/delivered', wrap(function*(req, res) {
   let {pushId} = req.body;
   logger.log('A message "%j" is delivered', {pushId});
 
-  let push = yield models.PushRecord.findById(pushId);
+  let push = yield models.PushRecord.findByPk(pushId);
   if (push) {
     push.isDelivered = true;
     yield push.save();
@@ -193,7 +193,7 @@ router.post('/read', wrap(function*(req, res) {
   let {sendId} = req.body;
   logger.log('User ask to make message "%j" as read', {sendId});
 
-  let s = yield models.SendRecord.findById(sendId);
+  let s = yield models.SendRecord.findByPk(sendId);
   if (s) {
     if (s.isRead) {
       res.json({success: false, error: `The message with sendId "${sendId}" is already read.`});
@@ -215,7 +215,7 @@ router.post('/delay', wrap(function*(req, res) {
   let {sendId, schedule} = req.body;
   logger.log('User ask to delay message "%j" to "%s"', {sendId}, schedule);
 
-  let s = yield models.SendRecord.findById(sendId);
+  let s = yield models.SendRecord.findByPk(sendId);
   if (s) {
     s.isRead = true;
     s.isAlive = false;
