@@ -250,3 +250,14 @@ router.post('/delete', wrap(function*(req, res) {
 }));
 
 export default {path: config['p2m-message-server'].server.path, router};
+
+// send messages to many users.
+router.post('/sendToUsers', wrap(function*(req, res) {
+  let data = req.body;
+  logger.log('Client ask to send message "%j"', data);
+  yield Promise.all(_.map(data.targetUserIds, userId=>co(sendToUser(userId, data))));
+
+  yield pushService.forceRun();
+
+  res.json({success: true});
+}));
