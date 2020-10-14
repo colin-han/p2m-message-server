@@ -154,6 +154,17 @@ router.post('/send', wrap(function*(req, res) {
   res.json({success: true});
 }));
 
+// send messages to many users.
+router.post('/sendToUsers', wrap(function*(req, res) {
+  const data = req.body;
+  logger.log('Client ask to send message "%j"', data);
+  yield Promise.all(_.map(data.targetUserIds, userId => co(sendToUser(userId, data))));
+
+  yield pushService.forceRun();
+
+  res.json({ success: true });
+}));
+
 function *sendToUser(userId, message) {
   let m = yield models.Message.create({
     targetUserId: userId,
