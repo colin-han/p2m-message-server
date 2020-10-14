@@ -3,7 +3,6 @@
  */
 import Sequelize from 'sequelize';
 import Model from '../sequelize';
-import R from './relationships';
 
 const Message = Model.define('Message', {
   id: {
@@ -59,6 +58,8 @@ const Message = Model.define('Message', {
 
 }, {});
 
-R.hasMany(Message, "SendRecord");
+Message.associations = (models) => {
+  Message.hasMany(models.SendRecord, {onUpdate: 'cascade', onDelete: 'cascade'})
+}
 
 export default Message;

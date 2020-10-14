@@ -7,7 +7,6 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import R from './relationships';
 import Device from './Device';
 import Message from './Message';
 import SendRecord from './SendRecord';
@@ -20,6 +19,10 @@ const models = {
   PushRecord,
 };
 
-R.applyTo(models);
+Object.keys(models).forEach(modelName => {
+  if (models[modelName].associate) {
+    models[modelName].associate(models);
+  }
+});
 
 export default models;

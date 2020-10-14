@@ -3,7 +3,6 @@
  */
 import Sequelize from 'sequelize';
 import Model from '../sequelize';
-import R from './relationships';
 
 const PushRecord = Model.define('PushRecord', {
   id: {
@@ -21,7 +20,9 @@ const PushRecord = Model.define('PushRecord', {
   comment: '一个PushRecord是一次发送请求对一个设备的一次推送。'
 });
 
-R.belongsTo(PushRecord, 'SendRecord');
-R.belongsTo(PushRecord, 'Device');
+PushRecord.associations = (models) => {
+  PushRecord.belongsTo(models.SendRecord)
+  PushRecord.belongsTo(models.Device)
+}
 
 export default PushRecord;

@@ -3,7 +3,6 @@
  */
 import Sequelize from 'sequelize';
 import Model from '../sequelize';
-import R from './relationships';
 
 const SendRecord = Model.define('SendRecord', {
   id: {
@@ -33,12 +32,13 @@ const SendRecord = Model.define('SendRecord', {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
   }
-
 }, {
   comment: '一个消息可能对应多个SendRecord，用户发送消息或点击一个消息的延后处理后都会产生新的SendRecord.'
 });
 
-R.belongsTo(SendRecord, 'Message');
-R.hasMany(SendRecord, "PushRecord");
+SendRecord.associations = (models) => {
+  SendRecord.belongsTo(models.Message)
+  SendRecord.hasMany(models.PushRecord, {onUpdate: 'cascade', onDelete: 'cascade'})
+}
 
 export default SendRecord;

@@ -5,10 +5,10 @@ p2m-message-server:
     interval: 60000
 
   database:
-    username: root
-    password: xA123456
+    username: thinknet
+    password: p2m13456
     database: p2m_message_server
-    host: mysql
+    host: localhost
     dialect: mysql
 
   jpush:

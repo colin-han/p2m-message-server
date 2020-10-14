@@ -22,6 +22,7 @@
     "lodash": "^4.17.4",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1",
+    "mysql2": "^2.2.5",
     "p2m-common-logger": "^1.0.0",
     "p2m-message-channel-jpush": "^2.0.0",
     "p2m-message-channel-socket-io": "^2.0.1",

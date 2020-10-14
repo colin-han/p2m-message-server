@@ -3,7 +3,6 @@
  */
 import Sequelize from 'sequelize';
 import Model from '../sequelize';
-import R from './relationships';
 
 const Device = Model.define('Device', {
   id: {
@@ -37,6 +36,8 @@ const Device = Model.define('Device', {
   }
 }, {});
 
-R.hasMany(Device, 'PushRecord');
+Device.associations = (models) => {
+  Device.hasMany(models.PushRecord, {onUpdate: 'cascade', onDelete: 'cascade'})
+}
 
 export default Device;
