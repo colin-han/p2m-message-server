@@ -58,7 +58,7 @@ const Message = Model.define('Message', {
 
 }, {});
 
-Message.associations = (models) => {
+Message.associate = (models) => {
   Message.hasMany(models.SendRecord, {onUpdate: 'cascade', onDelete: 'cascade'})
 }
 

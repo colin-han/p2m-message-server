@@ -36,7 +36,7 @@ const Device = Model.define('Device', {
   }
 }, {});
 
-Device.associations = (models) => {
+Device.associate = (models) => {
   Device.hasMany(models.PushRecord, {onUpdate: 'cascade', onDelete: 'cascade'})
 }
 

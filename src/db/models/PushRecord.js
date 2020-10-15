@@ -20,7 +20,7 @@ const PushRecord = Model.define('PushRecord', {
   comment: '一个PushRecord是一次发送请求对一个设备的一次推送。'
 });
 
-PushRecord.associations = (models) => {
+PushRecord.associate = (models) => {
   PushRecord.belongsTo(models.SendRecord)
   PushRecord.belongsTo(models.Device)
 }

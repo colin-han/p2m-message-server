@@ -36,7 +36,7 @@ const SendRecord = Model.define('SendRecord', {
   comment: '一个消息可能对应多个SendRecord，用户发送消息或点击一个消息的延后处理后都会产生新的SendRecord.'
 });
 
-SendRecord.associations = (models) => {
+SendRecord.associate = (models) => {
   SendRecord.belongsTo(models.Message)
   SendRecord.hasMany(models.PushRecord, {onUpdate: 'cascade', onDelete: 'cascade'})
 }
