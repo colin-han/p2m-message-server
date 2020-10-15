@@ -1,4 +1,4 @@
-FROM colinhan/p2m-node6
+FROM node:14-alpine
 
 ENV NODE_ENV production
 RUN npm set registry https://registry.npm.taobao.org/ && \
@@ -13,7 +13,8 @@ ADD ./yarn.lock /yarn.lock
 ADD ./.babelrc /.babelrc
 
 # Temporally, I use `ln -s /build src` to avoid change migration script. :(
-RUN NODE_ENV= yarn install && \
+RUN npm install -g sequelize-cli babel-cli && \
+    NODE_ENV= yarn install && \
     yarn build && \
     rm -rf src && \
     ln -s /build src && \
