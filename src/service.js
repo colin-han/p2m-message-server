@@ -6,6 +6,9 @@ import Promise from 'promise';
 import co from 'co';
 import {models} from './db';
 import config from 'config';
+import Sequelize from 'sequelize';
+
+const { Op } = Sequelize;
 
 const logger = require('p2m-common-logger')('message-server');
 
@@ -24,7 +27,7 @@ function* loop() {
   let sends = yield models.SendRecord.findAll({
     where: {
       isSent: false,
-      schedule: {$lte: new Date()}
+      schedule: {[Op.lte]: new Date()}
     },
     include: [{
       model: models.Message,

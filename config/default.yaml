@@ -9,6 +9,7 @@ p2m-message-server:
     password: xA123456
     database: p2m_message_server
     host: mysql
+    port: 3306
     dialect: mysql
 
   jpush:
