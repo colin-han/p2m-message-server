@@ -50,7 +50,8 @@
     "server": "node build/app.js",
     "start": "./node_modules/.bin/nodemon --watch build --watch config build/app.js",
     "migration": "node ./node_modules/.bin/p2migration up -c p2m-message-server/database -m src/db/migrations -s src/db/seeders",
-    "migration:down": "node ./node_modules/.bin/p2migration down -c p2m-message-server/database -m src/db/migrations -s src/db/seeders"
+    "migration:down": "node ./node_modules/.bin/p2migration down -c p2m-message-server/database -m src/db/migrations -s src/db/seeders",
+    "pub": "echo \"Current version: v$npm_package_version\" && git tag \"v$npm_package_version\" && git push -u origin \"v$npm_package_version\""
   },
   "bin": {
     "p2message": "./app.js",
